@@ -1,0 +1,27 @@
+{% extends "core/base.html" %}
+
+{% block title %}{{title}}{% endblock%}
+
+{% block content %}
+<h1 class="text-center text-4xl font-bold">{{title}}</h1>
+
+<form method="post" action="." enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="space-2">
+        {{ form.as_p }}
+    </div>
+
+    {% if form.errors or form.non_field_errors %}
+    <div class="mb-3 p-6 bg-red-100 rounded-xl"
+        {% for field in form %}
+            {{ field.errors }}
+        {% endfor %}
+    </div>
+
+    {{ form.non_field_errors }}
+
+    {% endif %}
+
+    <br><button class="py-4 px-8 bg-indigo-900 hover:bg-indigo-800 text-white font-bold py-2 px-4 rounded" type="submit">Submit</button>
+</form>
+{% endblock  %}
