@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
-from .forms import NewItemForm
+from .forms import NewItemForm, EditItemForm
 from .models import Category, Item
 
 def detail(request, pk):
@@ -30,3 +31,40 @@ def new(request):
         'form': form,
         'title': 'New Item',
     })
+
+@login_required
+def edit(request, pk):
+        
+    item = get_object_or_404(Item, pk=pk, created_by=request.user)
+    
+    if request.method == 'POST':
+        form = EditItemForm(request.POST, request.FILES, instance=item)
+        print("post")
+        if form.is_valid():
+            print('valid')
+            item.save()
+            
+            return redirect('item:detail', pk=item.pk)
+    else:
+        form = EditItemForm(instance=item)
+    
+    return render(request, 'item/new.html', {
+        'form': form,
+        'title': 'Edit Item',
+    })
+
+
+@login_required
+def delete(request, pk):
+    item = get_object_or_404(Item, pk=pk, created_by=request.user)
+  
+    return render(request, 'item/deleteConfirmation.html',{
+        'item': item
+        })
+
+@login_required
+def deleteComfirmed(request, pk):
+    item = get_object_or_404(Item, pk=pk, created_by=request.user)
+    item.delete()
+    
+    return redirect('dashboard:index')
