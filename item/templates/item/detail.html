@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ item.name }}{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-5 gap-6">
+    <div class="col-span-3">
+        <img src="{{ item.image.url }}" alt="{{ item.name }}" class="rounded-xl">
+    </div>
+
+    <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
+        <h1 class="text-3xl font-bold">{{ item.name }}</h1>
+        <p class="text-xl font-semibold text-gray-600">Category: {{ item.category }}</p>
+        <p class="text-xl font-semibold text-gray-600">Price: {{ item.price }}$</p>
+        <p class="text-xl font-semibold text-gray-600">Description: {{ item.description }}</p>
+        <a href="#" class="inline-block px-6 py-2 mt-6 text-lg font-semibold text-white uppercase transition duration-800 bg-indigo-800 rounded-xl hover:bg-indigo-600">Book now!</a>
+    </div>
+
+</div>
+{% endblock %}
