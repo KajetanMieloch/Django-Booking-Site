@@ -9,4 +9,4 @@ Welcome to the Django Booking Site project! This web application allows users to
 - **Booking Stays**: Users can book accommodations at hotels.
 - **Explore Hotels**: Users can browse and explore different hotels.
 
-![Django Booking Site](sitelook.jpg)
+![Django Booking Site](sitelook.png)
