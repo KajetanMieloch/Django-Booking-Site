@@ -8,3 +8,5 @@ Welcome to the Django Booking Site project! This web application allows users to
 - **Hotel Management**: Administrators can add and manage hotel listings.
 - **Booking Stays**: Users can book accommodations at hotels.
 - **Explore Hotels**: Users can browse and explore different hotels.
+
+![Django Booking Site](sitelook.jpg)
